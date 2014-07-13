@@ -81,8 +81,6 @@ stop(Pid, Reason) ->
 shutdown_pool(Pid, Wait) ->
     gen_fsm:sync_send_all_state_event(Pid, {shutdown, Wait}, infinity).
 
-init([WorkerMod, PoolSize, VNodeIndex, WorkerArgs, WorkerProps]) ->
-    init([WorkerMod, PoolSize, 0, VNodeIndex, WorkerArgs, WorkerProps]);
 
 init([WorkerMod, PoolSize, MaxOverFlow, VNodeIndex, WorkerArgs, WorkerProps]) ->
     {ok, Pid} = poolboy:start_link([{worker_module, riak_core_vnode_worker},
