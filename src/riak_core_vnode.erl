@@ -237,6 +237,15 @@ do_init(State = #state{index=Index, mod=Mod, forward=Forward}) ->
                                                                        Index,
                                                                        WorkerArgs,
                                                                        worker_props);
+                {pool, WorkerModule, MaxOverflow, PoolSize, WorkerArgs}=PoolConfig ->
+                    lager:debug("starting worker pool ~p with size of ~p~n",
+                                [WorkerModule, PoolSize]),
+                    {ok, PoolPid} = riak_core_vnode_worker_pool:start_link(WorkerModule,
+                                                                       PoolSize,
+                                                                       MaxOverflow,
+                                                                       Index,
+                                                                       WorkerArgs,
+                                                                       worker_props);
                 _ ->
                     PoolPid = PoolConfig = undefined
             end,
