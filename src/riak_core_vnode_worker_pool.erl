@@ -65,7 +65,7 @@
     }).
 
 start_link(WorkerMod, PoolSize, VNodeIndex, WorkerArgs, WorkerProps) ->
-    gen_fsm:start_link(?MODULE, [WorkerMod, PoolSize,  VNodeIndex, WorkerArgs, WorkerProps], []).
+    start_link(WorkerMod, PoolSize, 0, VNodeIndex, WorkerArgs, WorkerProps).
 
 start_link(WorkerMod, PoolSize, MaxOverflow, VNodeIndex, WorkerArgs, WorkerProps) ->
     gen_fsm:start_link(?MODULE, [WorkerMod, PoolSize, MaxOverflow, VNodeIndex, WorkerArgs, WorkerProps], []).
