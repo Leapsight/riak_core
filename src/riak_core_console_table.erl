@@ -85,7 +85,7 @@ row(Spec, Row0) ->
 titles(Spec) ->
     [ $| | lists:reverse(
         ["\n" | lists:foldl(fun({Title, Size}, TitleRow) ->
-                               [align(atom_to_list(Title), Size) | TitleRow]
+                               [align(Title, Size) | TitleRow]
                             end, [], Spec)])].
 
 -spec align(string(), non_neg_integer()) -> iolist().
